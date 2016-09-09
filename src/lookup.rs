@@ -210,7 +210,10 @@ macro_rules! vec_str {
         lookup.add_file(vec_str!["folder2", "file5"], (1, 9), 1);
         lookup.add_file(vec_str!["file6"], (1, 8), 1);
 
-        assert_eq!(lookup.remove_folder(vec_str!["folder1", "subfolder1"]), vec![(1, 12), (1, 13)]);
+        let remove_list = lookup.remove_folder(vec_str!["folder1", "subfolder1"]);
+        assert!(remove_list.contains(&(1, 12)));
+        assert!(remove_list.contains(&(1, 13)));
+        assert_eq!(remove_list.len(), 2);
         assert_eq!(lookup.get_id_for(vec_str!["folder1", "subfolder1", "file1"]), None);
         assert_eq!(lookup.get_id_for(vec_str!["folder1", "subfolder1", "file2"]), None);
         assert_eq!(lookup.get_id_for(vec_str!["folder1", "subfolder2", "file3"]), Some((1, 11)));

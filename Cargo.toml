@@ -2,6 +2,11 @@
 name = "crdt_fileset"
 version = "0.1.0"
 authors = ["Daniel Yule <daniel.yule@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/dyule/crdt_fileset"
+repository = "https://github.com/dyule/crdt_fileset"
+description = "A library for keeping a file system in sync, based on OR-Sets"
+keywords = ["or-sets", "filesync", "crdt"]
 
 [dependencies]
 byteorder = "0.5"

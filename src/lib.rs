@@ -251,6 +251,14 @@ impl<FU: FileUpdater> FileSet<FU> {
         &self.files
     }
 
+    pub fn get_file_history_for(&self, file: (u32, u32)) -> Option<FU::FileTransaction> {
+        if let Some(file_metadata) = self.files.get(&file) {
+            Some(self.updater.get_changes_since(file_metadata.get_local_filename().as_path(), None))
+        } else {
+            None
+        }
+    }
+
     pub fn integrate_remote_file_list(&mut self, mut file_list: HashMap<(u32, u32), FileHistory<FU>>, timestamp_lookup: BTreeMap<u32, (u32, u32)>) -> Vec<FileSetOperation<FU>> {
         // Recursively go through every file in the directory
         // If the file is in the local list,
